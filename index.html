@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSprint — Learn Smarter. Practise More.</title>
+    <meta name="description" content="Gamified coding and technology learning platform for Python, SQL, and Web Development with interactive challenges, progress tracking, and achievements." />
+    <meta property="og:title" content="CodeSprint — Learn Smarter. Practise More." />
+    <meta property="og:description" content="Gamified coding and technology learning platform for Python, SQL, and Web Development with interactive challenges, progress tracking, and achievements." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('codesprint_theme');
+          if (stored === 'dark') {
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="w-full min-h-screen antialiased overflow-x-hidden selection:bg-[#7B5CFF]/30 selection:text-[#1F2A44]">
+    <div id="root" class="w-full min-h-screen flex flex-col overflow-x-hidden"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

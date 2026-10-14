@@ -1,0 +1,790 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Baloo 2', cursive, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-page: var(--bg-page);
+  --color-app: var(--bg-app);
+  --color-card: var(--bg-card);
+  --color-card-subtle: var(--bg-card-subtle);
+  --color-card-alt: var(--bg-card-alt);
+  --color-card-hover: var(--bg-card-hover);
+  --color-header: var(--bg-header);
+
+  --color-border: var(--border-color);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-dark: var(--border-dark);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-green: var(--game-green);
+  --color-gold: var(--game-gold);
+  --color-purple: var(--game-purple);
+  --color-red: var(--game-red);
+  --color-navy: var(--game-navy);
+  --color-sky: var(--game-sky);
+
+  --color-game-green: var(--game-green);
+  --color-game-green-dark: var(--game-green-dark);
+  --color-game-green-light: var(--game-green-light);
+  --color-game-gold: var(--game-gold);
+  --color-game-gold-dark: var(--game-gold-dark);
+  --color-game-gold-light: var(--game-gold-light);
+  --color-game-purple: var(--game-purple);
+  --color-game-purple-dark: var(--game-purple-dark);
+  --color-game-purple-light: var(--game-purple-light);
+  --color-game-red: var(--game-red);
+  --color-game-red-dark: var(--game-red-dark);
+  --color-game-red-light: var(--game-red-light);
+  --color-game-navy: var(--game-navy);
+  --color-game-sky: var(--game-sky);
+
+  --color-game-card: var(--bg-card);
+  --color-game-border: var(--border-color);
+  --color-game-text: var(--text-primary);
+  --color-game-muted: var(--text-muted);
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: 'Baloo 2', cursive, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* Theme Tokens — Light Default: Bright Cartoon Game Look (theme.png) */
+    --bg-page-start: #CFEFFF;
+    --bg-page-end: #EAF8FF;
+    --bg-page: #EAF8FF;
+    --bg-app: #EAF8FF;
+    --bg-card: #FFFFFF;
+    --bg-card-subtle: #F0F7FF;
+    --bg-card-alt: #E3F0FC;
+    --bg-card-hover: #F8FBFF;
+    --bg-header: rgba(255, 255, 255, 0.95);
+
+    --border-color: #D3E6F8;
+    --border-subtle: #E6F1FC;
+    --border-dark: #B5D5F5;
+
+    /* Reference Palette */
+    --game-green: #4CB963;
+    --game-green-dark: #37954C;
+    --game-green-light: #EBF8EE;
+
+    --game-gold: #FFC53D;
+    --game-gold-dark: #DFA41F;
+    --game-gold-light: #FFF9E6;
+
+    --game-purple: #7B5CFF;
+    --game-purple-dark: #5F3DE0;
+    --game-purple-light: #F2EEFF;
+
+    --game-red: #EF5B5B;
+    --game-red-dark: #CB3D3D;
+    --game-red-light: #FDEEEE;
+
+    --game-navy: #1F2A44;
+    --game-sky: #38BDF8;
+
+    --text-primary: #1F2A44;
+    --text-secondary: #4A5B7D;
+    --text-muted: #798CA8;
+
+    /* Solid bottom shadows for chunky game feel */
+    --shadow-chunky: 0 4px 0 #CBDFF5;
+    --shadow-chunky-sm: 0 2px 0 #CBDFF5;
+    --shadow-chunky-lg: 0 6px 0 #B9D5F2;
+
+    /* Island Selection Theme Variables — Light Theme */
+    --island-page-bg: #EAF8FF;
+    --island-page-text: #1F2A44;
+    --island-kicker-color: #4CB963;
+    --island-heading-color: #1F2A44;
+    --island-subtitle-color: #4A5B7D;
+
+    --island-hud-bg: rgba(255, 255, 255, 0.95);
+    --island-hud-border: #D3E6F8;
+    --island-hud-text: #1F2A44;
+    --island-hud-subtext: #798CA8;
+    --island-hud-btn-bg: #FFFFFF;
+    --island-hud-btn-border: #D3E6F8;
+    --island-hud-btn-text: #1F2A44;
+
+    /* Island Card Common Typography & Progress — Light Theme */
+    --island-card-title: #1F2A44;
+    --island-card-desc: #4A5B7D;
+    --island-card-meta: #798CA8;
+    --island-chevron-color: #798CA8;
+
+    --island-prog-box-bg: #F0F7FF;
+    --island-prog-box-border: #D3E6F8;
+    --island-prog-label: #4A5B7D;
+    --island-prog-pct: #1F2A44;
+    --island-prog-track: #D3E6F8;
+
+    --island-locked-bg: #F0F7FF;
+    --island-locked-border: #D3E6F8;
+    --island-locked-text: #798CA8;
+
+    --island-btn-bg: #7B5CFF;
+    --island-btn-text: #FFFFFF;
+    --island-btn-border: #5F3DE0;
+
+    /* Specific Island Entities — Light Theme */
+    --island-python-bg: #FFFFFF;
+    --island-python-border: #4CB963;
+    --island-python-border-hover: #37954C;
+    --island-python-shadow: 0 4px 0 #37954C;
+    --island-python-shadow-hover: 0 6px 0 #37954C;
+    --island-python-icon-bg: #EBF8EE;
+    --island-python-icon-border: #4CB963;
+    --island-python-icon-color: #37954C;
+    --island-python-badge-bg: #EBF8EE;
+    --island-python-badge-border: #4CB963;
+    --island-python-badge-color: #37954C;
+    --island-python-btn-bg: #4CB963;
+    --island-python-btn-text: #FFFFFF;
+
+    --island-sql-bg: #FFFFFF;
+    --island-sql-border: #38BDF8;
+    --island-sql-border-hover: #0284C7;
+    --island-sql-shadow: 0 4px 0 #0284C7;
+    --island-sql-shadow-hover: 0 6px 0 #0284C7;
+    --island-sql-icon-bg: #F0F9FF;
+    --island-sql-icon-border: #38BDF8;
+    --island-sql-icon-color: #0284C7;
+    --island-sql-badge-bg: #F0F9FF;
+    --island-sql-badge-border: #38BDF8;
+    --island-sql-badge-color: #0284C7;
+    --island-sql-btn-bg: #38BDF8;
+    --island-sql-btn-text: #FFFFFF;
+
+    --island-java-bg: #FFFFFF;
+    --island-java-border: #EF5B5B;
+    --island-java-border-hover: #CB3D3D;
+    --island-java-shadow: 0 4px 0 #CB3D3D;
+    --island-java-shadow-hover: 0 6px 0 #CB3D3D;
+    --island-java-icon-bg: #FDEEEE;
+    --island-java-icon-border: #EF5B5B;
+    --island-java-icon-color: #CB3D3D;
+    --island-java-badge-bg: #FDEEEE;
+    --island-java-badge-border: #EF5B5B;
+    --island-java-badge-color: #CB3D3D;
+    --island-java-btn-bg: #EF5B5B;
+    --island-java-btn-text: #FFFFFF;
+
+    --island-ai-bg: #FFFFFF;
+    --island-ai-border: #7B5CFF;
+    --island-ai-border-hover: #5F3DE0;
+    --island-ai-shadow: 0 4px 0 #5F3DE0;
+    --island-ai-shadow-hover: 0 6px 0 #5F3DE0;
+    --island-ai-icon-bg: #F2EEFF;
+    --island-ai-icon-border: #7B5CFF;
+    --island-ai-icon-color: #5F3DE0;
+    --island-ai-badge-bg: #F2EEFF;
+    --island-ai-badge-border: #7B5CFF;
+    --island-ai-badge-color: #5F3DE0;
+    --island-ai-btn-bg: #7B5CFF;
+    --island-ai-btn-text: #FFFFFF;
+
+    --island-footer-bg: rgba(255, 255, 255, 0.95);
+    --island-footer-border: #D3E6F8;
+    --island-footer-text: #4A5B7D;
+
+    /* Village Map Theme Tokens — Light */
+    --map-bg: #EAF8FF;
+    --map-header-bg: rgba(255, 255, 255, 0.95);
+    --map-header-border: #D3E6F8;
+    --map-header-title: #1F2A44;
+    --map-canvas-bg: #FFFFFF;
+    --map-canvas-border: #D3E6F8;
+    --map-canvas-shadow: 0 6px 0 #CBDFF5;
+    --map-path-base: #D3E6F8;
+    --map-node-bg: #FFFFFF;
+    --map-node-border: #D3E6F8;
+    --map-node-title: #1F2A44;
+    --map-node-subtitle: #4A5B7D;
+    --map-preview-bg: #FFFFFF;
+    --map-preview-border: #D3E6F8;
+    --map-preview-title: #1F2A44;
+    --map-preview-desc: #4A5B7D;
+    --map-preview-topic-bg: #F0F7FF;
+    --map-preview-topic-border: #D3E6F8;
+    --map-preview-topic-text: #4A5B7D;
+    --map-footer-bg: rgba(255, 255, 255, 0.95);
+    --map-footer-border: #D3E6F8;
+    --map-footer-text: #4A5B7D;
+  }
+
+  html.dark {
+    /* Theme Tokens — Deep Navy Night-Sky Version */
+    --bg-page-start: #0B1224;
+    --bg-page-end: #101935;
+    --bg-page: #101935;
+    --bg-app: #0B1224;
+    --bg-card: #15203D;
+    --bg-card-subtle: #1C2B52;
+    --bg-card-alt: #233563;
+    --bg-card-hover: #1E2E57;
+    --bg-header: rgba(16, 25, 53, 0.95);
+
+    --border-color: #273A6B;
+    --border-subtle: #1C2B52;
+    --border-dark: #172445;
+
+    /* Game Accents in Dark */
+    --game-green: #4CB963;
+    --game-green-dark: #2A7339;
+    --game-green-light: rgba(76, 185, 99, 0.18);
+
+    --game-gold: #FFC53D;
+    --game-gold-dark: #B8810E;
+    --game-gold-light: rgba(255, 197, 61, 0.18);
+
+    --game-purple: #7B5CFF;
+    --game-purple-dark: #4B32B5;
+    --game-purple-light: rgba(123, 92, 255, 0.18);
+
+    --game-red: #EF5B5B;
+    --game-red-dark: #9E2B2B;
+    --game-red-light: rgba(239, 91, 91, 0.18);
+
+    --game-navy: #F0F4FC;
+    --game-sky: #38BDF8;
+
+    --text-primary: #F0F4FC;
+    --text-secondary: #C1D0EB;
+    --text-muted: #7E93BA;
+
+    --shadow-chunky: 0 4px 0 #0B1224;
+    --shadow-chunky-sm: 0 2px 0 #0B1224;
+    --shadow-chunky-lg: 0 6px 0 #080D1A;
+
+    /* Island Selection Theme Variables — Dark Theme */
+    --island-page-bg: #0B1224;
+    --island-page-text: #F0F4FC;
+    --island-kicker-color: #4CB963;
+    --island-heading-color: #F0F4FC;
+    --island-subtitle-color: #C1D0EB;
+
+    --island-hud-bg: rgba(21, 32, 61, 0.95);
+    --island-hud-border: #273A6B;
+    --island-hud-text: #F0F4FC;
+    --island-hud-subtext: #7E93BA;
+    --island-hud-btn-bg: #1C2B52;
+    --island-hud-btn-border: #273A6B;
+    --island-hud-btn-text: #F0F4FC;
+
+    /* Island Card Common Typography & Progress — Dark Theme */
+    --island-card-title: #F0F4FC;
+    --island-card-desc: #C1D0EB;
+    --island-card-meta: #7E93BA;
+    --island-chevron-color: #7E93BA;
+
+    --island-prog-box-bg: rgba(11, 18, 36, 0.7);
+    --island-prog-box-border: #273A6B;
+    --island-prog-label: #C1D0EB;
+    --island-prog-pct: #F0F4FC;
+    --island-prog-track: #273A6B;
+
+    --island-locked-bg: rgba(28, 43, 82, 0.8);
+    --island-locked-border: #273A6B;
+    --island-locked-text: #7E93BA;
+
+    --island-btn-bg: #7B5CFF;
+    --island-btn-text: #FFFFFF;
+    --island-btn-border: #4B32B5;
+
+    /* Specific Island Entities — Dark Theme */
+    --island-python-bg: #15203D;
+    --island-python-border: #4CB963;
+    --island-python-border-hover: #6EE7B7;
+    --island-python-shadow: 0 4px 0 #2A7339;
+    --island-python-shadow-hover: 0 6px 0 #2A7339;
+    --island-python-icon-bg: rgba(76, 185, 99, 0.2);
+    --island-python-icon-border: #4CB963;
+    --island-python-icon-color: #4CB963;
+    --island-python-badge-bg: rgba(76, 185, 99, 0.2);
+    --island-python-badge-border: #4CB963;
+    --island-python-badge-color: #4CB963;
+    --island-python-btn-bg: #4CB963;
+    --island-python-btn-text: #FFFFFF;
+
+    --island-sql-bg: #15203D;
+    --island-sql-border: #38BDF8;
+    --island-sql-border-hover: #7DD3FC;
+    --island-sql-shadow: 0 4px 0 #0284C7;
+    --island-sql-shadow-hover: 0 6px 0 #0284C7;
+    --island-sql-icon-bg: rgba(56, 189, 248, 0.2);
+    --island-sql-icon-border: #38BDF8;
+    --island-sql-icon-color: #38BDF8;
+    --island-sql-badge-bg: rgba(56, 189, 248, 0.2);
+    --island-sql-badge-border: #38BDF8;
+    --island-sql-badge-color: #38BDF8;
+    --island-sql-btn-bg: #38BDF8;
+    --island-sql-btn-text: #FFFFFF;
+
+    --island-java-bg: #15203D;
+    --island-java-border: #EF5B5B;
+    --island-java-border-hover: #FDA4AF;
+    --island-java-shadow: 0 4px 0 #9E2B2B;
+    --island-java-shadow-hover: 0 6px 0 #9E2B2B;
+    --island-java-icon-bg: rgba(239, 91, 91, 0.2);
+    --island-java-icon-border: #EF5B5B;
+    --island-java-icon-color: #EF5B5B;
+    --island-java-badge-bg: rgba(239, 91, 91, 0.2);
+    --island-java-badge-border: #EF5B5B;
+    --island-java-badge-color: #EF5B5B;
+    --island-java-btn-bg: #EF5B5B;
+    --island-java-btn-text: #FFFFFF;
+
+    --island-ai-bg: #15203D;
+    --island-ai-border: #7B5CFF;
+    --island-ai-border-hover: #C084FC;
+    --island-ai-shadow: 0 4px 0 #4B32B5;
+    --island-ai-shadow-hover: 0 6px 0 #4B32B5;
+    --island-ai-icon-bg: rgba(123, 92, 255, 0.2);
+    --island-ai-icon-border: #7B5CFF;
+    --island-ai-icon-color: #7B5CFF;
+    --island-ai-badge-bg: rgba(123, 92, 255, 0.2);
+    --island-ai-badge-border: #7B5CFF;
+    --island-ai-badge-color: #7B5CFF;
+    --island-ai-btn-bg: #7B5CFF;
+    --island-ai-btn-text: #FFFFFF;
+
+    --island-footer-bg: rgba(16, 25, 53, 0.95);
+    --island-footer-border: #273A6B;
+    --island-footer-text: #C1D0EB;
+
+    /* Village Map Theme Tokens — Dark */
+    --map-bg: #0B1224;
+    --map-header-bg: rgba(16, 25, 53, 0.95);
+    --map-header-border: #273A6B;
+    --map-header-title: #F0F4FC;
+    --map-canvas-bg: #15203D;
+    --map-canvas-border: #273A6B;
+    --map-canvas-shadow: 0 6px 0 #0B1224;
+    --map-path-base: #273A6B;
+    --map-node-bg: #1C2B52;
+    --map-node-border: #273A6B;
+    --map-node-title: #F0F4FC;
+    --map-node-subtitle: #7E93BA;
+    --map-preview-bg: #15203D;
+    --map-preview-border: #273A6B;
+    --map-preview-title: #F0F4FC;
+    --map-preview-desc: #C1D0EB;
+    --map-preview-topic-bg: #1C2B52;
+    --map-preview-topic-border: #273A6B;
+    --map-preview-topic-text: #C1D0EB;
+    --map-footer-bg: rgba(16, 25, 53, 0.95);
+    --map-footer-border: #273A6B;
+    --map-footer-text: #7E93BA;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  body {
+    background: linear-gradient(180deg, var(--bg-page-start) 0%, var(--bg-page-end) 100%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: 0.01em;
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
+  }
+}
+
+/* =========================================================================
+   CARTOON GAME COMPONENTS & UTILITIES
+   ========================================================================= */
+
+/* Chunky 2px border card with solid bottom shadow */
+.game-card {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-chunky);
+  border-radius: 1rem;
+}
+
+.game-card-subtle {
+  background-color: var(--bg-card-subtle);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-chunky-sm);
+  border-radius: 1rem;
+}
+
+/* Chunky game buttons with press-down active effect */
+.game-btn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: 0.875rem;
+  border-width: 2px;
+  border-style: solid;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+  user-select: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border-dark) !important;
+}
+
+.game-btn-green {
+  background-color: var(--game-green);
+  border-color: var(--game-green-dark);
+  color: #FFFFFF;
+  box-shadow: 0 4px 0 var(--game-green-dark);
+}
+.game-btn-green:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--game-green-dark) !important;
+}
+
+.game-btn-purple {
+  background-color: var(--game-purple);
+  border-color: var(--game-purple-dark);
+  color: #FFFFFF;
+  box-shadow: 0 4px 0 var(--game-purple-dark);
+}
+.game-btn-purple:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--game-purple-dark) !important;
+}
+
+.game-btn-gold {
+  background-color: var(--game-gold);
+  border-color: var(--game-gold-dark);
+  color: #1F2A44;
+  box-shadow: 0 4px 0 var(--game-gold-dark);
+}
+.game-btn-gold:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--game-gold-dark) !important;
+}
+
+.game-btn-red {
+  background-color: var(--game-red);
+  border-color: var(--game-red-dark);
+  color: #FFFFFF;
+  box-shadow: 0 4px 0 var(--game-red-dark);
+}
+.game-btn-red:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--game-red-dark) !important;
+}
+
+.game-btn-card {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-chunky);
+}
+.game-btn-card:hover:not(:disabled) {
+  background-color: var(--bg-card-subtle);
+}
+.game-btn-card:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-chunky-sm) !important;
+}
+
+/* =========================================================================
+   VILLAGE ROADMAP & MAP SEMANTIC THEME CLASSES
+   ========================================================================= */
+.map-page-container {
+  background-color: var(--map-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+.map-header {
+  background-color: var(--map-header-bg) !important;
+  border-color: var(--map-header-border) !important;
+}
+
+.map-header-title {
+  color: var(--map-header-title) !important;
+}
+
+.map-stats-widget {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: var(--shadow-chunky-sm);
+  color: var(--text-primary) !important;
+}
+
+.map-canvas-container {
+  background-color: var(--map-canvas-bg) !important;
+  border-color: var(--map-canvas-border) !important;
+  box-shadow: var(--map-canvas-shadow);
+}
+
+.map-node-card {
+  background-color: var(--map-node-bg) !important;
+  border-color: var(--map-node-border) !important;
+}
+
+.map-node-title {
+  color: var(--map-node-title) !important;
+}
+
+.map-node-subtitle {
+  color: var(--map-node-subtitle) !important;
+}
+
+.map-preview-card {
+  background-color: var(--map-preview-bg) !important;
+  border-color: var(--map-preview-border) !important;
+  box-shadow: var(--shadow-chunky);
+}
+
+.map-preview-title {
+  color: var(--map-preview-title) !important;
+}
+
+.map-preview-desc {
+  color: var(--map-preview-desc) !important;
+}
+
+.map-preview-topic {
+  background-color: var(--map-preview-topic-bg) !important;
+  border-color: var(--map-preview-topic-border) !important;
+  color: var(--map-preview-topic-text) !important;
+}
+
+.map-footer {
+  background-color: var(--map-footer-bg) !important;
+  border-color: var(--map-footer-border) !important;
+  color: var(--map-footer-text) !important;
+}
+
+/* =========================================================================
+   ISLAND SELECTION SEMANTIC THEME CLASSES
+   ========================================================================= */
+.island-page-container {
+  background-color: var(--island-page-bg) !important;
+  color: var(--island-page-text) !important;
+}
+.island-kicker {
+  color: var(--island-kicker-color) !important;
+}
+.island-heading {
+  color: var(--island-heading-color) !important;
+}
+.island-subtitle {
+  color: var(--island-subtitle-color) !important;
+}
+.island-hud-widget {
+  background-color: var(--island-hud-bg) !important;
+  border-color: var(--island-hud-border) !important;
+  box-shadow: var(--shadow-chunky-sm);
+  color: var(--island-hud-text) !important;
+}
+.island-hud-btn {
+  background-color: var(--island-hud-btn-bg) !important;
+  border-color: var(--island-hud-btn-border) !important;
+  box-shadow: var(--shadow-chunky-sm);
+  color: var(--island-hud-btn-text) !important;
+}
+.island-footer {
+  background-color: var(--island-footer-bg) !important;
+  border-color: var(--island-footer-border) !important;
+  color: var(--island-footer-text) !important;
+}
+
+/* Island Card Common Text & Elements */
+.island-card-title {
+  color: var(--island-card-title) !important;
+}
+.island-card-desc {
+  color: var(--island-card-desc) !important;
+}
+.island-card-chevron {
+  color: var(--island-chevron-color) !important;
+}
+.group:hover .island-card-chevron {
+  color: var(--island-card-title) !important;
+}
+
+.island-prog-box {
+  background-color: var(--island-prog-box-bg) !important;
+  border-color: var(--island-prog-box-border) !important;
+}
+.island-prog-label {
+  color: var(--island-prog-label) !important;
+}
+.island-prog-pct {
+  color: var(--island-prog-pct) !important;
+}
+.island-prog-track {
+  background-color: var(--island-prog-track) !important;
+}
+
+.island-badge-locked {
+  background-color: var(--island-locked-bg) !important;
+  border-color: var(--island-locked-border) !important;
+  color: var(--island-locked-text) !important;
+}
+
+.island-action-btn {
+  background-color: var(--island-btn-bg) !important;
+  color: var(--island-btn-text) !important;
+  border-color: var(--island-btn-border) !important;
+}
+
+/* Island Card Custom Entities */
+.island-entity-python {
+  background: var(--island-python-bg) !important;
+  border-color: var(--island-python-border) !important;
+  box-shadow: var(--island-python-shadow);
+}
+.island-entity-python:hover,
+.group:hover .island-entity-python {
+  border-color: var(--island-python-border-hover) !important;
+  box-shadow: var(--island-python-shadow-hover);
+}
+.island-icon-python {
+  background-color: var(--island-python-icon-bg) !important;
+  border-color: var(--island-python-icon-border) !important;
+  color: var(--island-python-icon-color) !important;
+}
+.island-badge-python {
+  background-color: var(--island-python-badge-bg) !important;
+  border-color: var(--island-python-badge-border) !important;
+  color: var(--island-python-badge-color) !important;
+}
+.group:hover .island-entity-python .island-action-btn:not(:disabled) {
+  background-color: var(--island-python-btn-bg) !important;
+  color: var(--island-python-btn-text) !important;
+  border-color: var(--island-python-btn-bg) !important;
+}
+
+.island-entity-sql {
+  background: var(--island-sql-bg) !important;
+  border-color: var(--island-sql-border) !important;
+  box-shadow: var(--island-sql-shadow);
+}
+.island-entity-sql:hover,
+.group:hover .island-entity-sql {
+  border-color: var(--island-sql-border-hover) !important;
+  box-shadow: var(--island-sql-shadow-hover);
+}
+.island-icon-sql {
+  background-color: var(--island-sql-icon-bg) !important;
+  border-color: var(--island-sql-icon-border) !important;
+  color: var(--island-sql-icon-color) !important;
+}
+.island-badge-sql {
+  background-color: var(--island-sql-badge-bg) !important;
+  border-color: var(--island-sql-badge-border) !important;
+  color: var(--island-sql-badge-color) !important;
+}
+.group:hover .island-entity-sql .island-action-btn:not(:disabled) {
+  background-color: var(--island-sql-btn-bg) !important;
+  color: var(--island-sql-btn-text) !important;
+  border-color: var(--island-sql-btn-bg) !important;
+}
+
+.island-entity-java {
+  background: var(--island-java-bg) !important;
+  border-color: var(--island-java-border) !important;
+  box-shadow: var(--island-java-shadow);
+}
+.island-entity-java:hover,
+.group:hover .island-entity-java {
+  border-color: var(--island-java-border-hover) !important;
+  box-shadow: var(--island-java-shadow-hover);
+}
+.island-icon-java {
+  background-color: var(--island-java-icon-bg) !important;
+  border-color: var(--island-java-icon-border) !important;
+  color: var(--island-java-icon-color) !important;
+}
+.island-badge-java {
+  background-color: var(--island-java-badge-bg) !important;
+  border-color: var(--island-java-badge-border) !important;
+  color: var(--island-java-badge-color) !important;
+}
+.group:hover .island-entity-java .island-action-btn:not(:disabled) {
+  background-color: var(--island-java-btn-bg) !important;
+  color: var(--island-java-btn-text) !important;
+  border-color: var(--island-java-btn-bg) !important;
+}
+
+.island-entity-ai {
+  background: var(--island-ai-bg) !important;
+  border-color: var(--island-ai-border) !important;
+  box-shadow: var(--island-ai-shadow);
+}
+.island-entity-ai:hover,
+.group:hover .island-entity-ai {
+  border-color: var(--island-ai-border-hover) !important;
+  box-shadow: var(--island-ai-shadow-hover);
+}
+.island-icon-ai {
+  background-color: var(--island-ai-icon-bg) !important;
+  border-color: var(--island-ai-icon-border) !important;
+  color: var(--island-ai-icon-color) !important;
+}
+.island-badge-ai {
+  background-color: var(--island-ai-badge-bg) !important;
+  border-color: var(--island-ai-badge-border) !important;
+  color: var(--island-ai-badge-color) !important;
+}
+.group:hover .island-entity-ai .island-action-btn:not(:disabled) {
+  background-color: var(--island-ai-btn-bg) !important;
+  color: var(--island-ai-btn-text) !important;
+  border-color: var(--island-ai-btn-bg) !important;
+}
+
+/* Custom game scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--game-purple);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
